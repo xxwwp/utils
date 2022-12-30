@@ -1,0 +1,32 @@
+{
+  "name": "@xxwwp/utils",
+  "version": "1.0.0",
+  "description": "utiliy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/xxwwp/utils.git"
+  },
+  "keywords": [
+    "utiliy"
+  ],
+  "author": "xxwwp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xxwwp/utils/issues"
+  },
+  "homepage": "https://github.com/xxwwp/utils#readme",
+  "devDependencies": {
+    "commitizen": "^4.2.6",
+    "cz-conventional-changelog": "^3.3.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
