@@ -21,8 +21,15 @@
   },
   "homepage": "https://github.com/xxwwp/utils#readme",
   "devDependencies": {
+    "@types/react": "^18.0.26",
+    "@typescript-eslint/eslint-plugin": "^5.47.1",
+    "@typescript-eslint/parser": "^5.47.1",
     "commitizen": "^4.2.6",
-    "cz-conventional-changelog": "^3.3.0"
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.30.0",
+    "eslint-plugin-react": "^7.31.11",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "react": "^18.2.0"
   },
   "config": {
     "commitizen": {
