@@ -1,5 +1,3 @@
-// import { useEffect, useRef } from "react";
-
 /** 判断值是否是布尔值 */
 export function isBoolean(val: any): val is boolean {
   return Object.prototype.toString.call(val) === "[object Boolean]";
@@ -26,7 +24,7 @@ export function isNumber(val: unknown): val is number {
 }
 
 /** 判断值是否是 BigInt */
-export function isBigInt(val: unknown): val is BigInt {
+export function isBigInt(val: unknown): val is bigint {
   return Object.prototype.toString.call(val) === "[object BigInt]";
 }
 
@@ -91,11 +89,6 @@ export const omit: OmitFunc = (obj, ...keys) => {
   return ret;
 };
 
-/** 判断当前环境是否是开发环境 */
-export function isDevelopment() {
-  return process.env.NODE_ENV === "development";
-}
-
 /** 限制字符长度，使用省略号进行补充 */
 export function stringLimit(str: string, count: number, fill = "...") {
   if (!isString(str)) return "";
@@ -107,56 +100,6 @@ export function stringLimit(str: string, count: number, fill = "...") {
   }
 }
 
-/** 文件转 base64 */
-export async function fileToBase64(img: File) {
-  return new Promise<string>((resolve) => {
-    const reader = new FileReader();
-    reader.addEventListener("load", () =>
-      setTimeout(() => {
-        resolve(reader.result as string);
-      }, 1000)
-    );
-    reader.readAsDataURL(img);
-  });
-}
-
-/**
- * 把像素转化为 rem
- *
- * @param pixel
- * @returns
- */
-export function toRem(pixel: number) {
-  return pixel / 16 + "rem";
-}
-
-/**
- * 复制文本
- *
- * @param text 需要复制的文本
- * @returns 是否复制成功，过低版本浏览器可能会复制失败。
- */
-export function copyText(text: string): boolean {
-  if (navigator.clipboard?.writeText) {
-    // w3 标准
-    navigator.clipboard.writeText(text);
-  } else if ((window as any).clipboardData?.setData) {
-    // 兼容 ie
-    (window as any).clipboardData.setData("Text", text);
-  } else if (document.queryCommandSupported?.("copy")) {
-    // 使用已废弃的 document.execCommand 方法
-    const ref = document.createElement("textarea");
-    document.body.appendChild(ref);
-    ref.value = text;
-    ref.select();
-    document.execCommand("copy");
-    document.body.removeChild(ref);
-  } else {
-    return false;
-  }
-  return true;
-}
-
 /**
  * 安全的解析 JSON
  *
@@ -165,32 +108,9 @@ export function copyText(text: string): boolean {
  */
 export function SafeJSONParse(value: any): unknown {
   try {
-    return JSON.parse(value!);
+    return JSON.parse(value);
   } catch (error) {
     console.error(error);
     return undefined;
   }
-}
-
-/**
- * 在 body 出现滚动条时，隐藏滚动条并填充 padding-left 让其正常显示
- *
- * @returns
- */
-export function hideBodyScrollbar() {
-  const scrollbarWidth = window.innerWidth - document.body.clientWidth;
-
-  const bs = document.body.style;
-
-  if (scrollbarWidth !== 0) {
-    const { paddingRight, overflow } = bs;
-    bs.paddingRight = scrollbarWidth + "px";
-    bs.overflow = "hidden";
-    return () => {
-      bs.paddingRight = paddingRight;
-      bs.overflow = overflow;
-    };
-  }
-
-  return () => void 0;
 }

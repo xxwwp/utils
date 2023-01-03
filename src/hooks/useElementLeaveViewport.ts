@@ -1,5 +1,5 @@
 import { startTransition, useEffect, useRef, useState } from "react";
-import { isNull } from "../utils";
+import { isNull } from "../es";
 
 export interface UseElementLeaveViewportParams {
   /** 观测区域的偏移量，当前视图的区域加上此值为观测区域的最终值，元素离开观测区域被视为离开 */
