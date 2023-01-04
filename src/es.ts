@@ -48,7 +48,7 @@ export function isWeakSet(val: unknown): val is WeakSet<object> {
   return Object.prototype.toString.call(val) === "[object WeakSet]";
 }
 
-/** 判断值是否是 Symbol */
+/** 判断值是否是 WeakMap */
 export function isWeakMap(val: unknown): val is WeakMap<object, unknown> {
   return Object.prototype.toString.call(val) === "[object WeakMap]";
 }
