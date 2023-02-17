@@ -13,6 +13,11 @@ export function isString(val: any): val is string {
   return Object.prototype.toString.call(val) === "[object String]";
 }
 
+/** 判断值是否是对象 */
+export function isObject(val: any): val is Record<any, unknown> {
+  return Object.prototype.toString.call(val) === "[object Object]";
+}
+
 /** 判断值是否是 null */
 export function isNull(val: any): val is null {
   return null === val;
@@ -106,11 +111,11 @@ export function stringLimit(str: string, count: number, fill = "...") {
  * @param value 需要解析的 json 字符串
  * @returns
  */
-export function SafeJSONParse(value: any): unknown {
+export function safeJSONParse(value: any): unknown {
   try {
     return JSON.parse(value);
   } catch (error) {
-    console.error(error);
+    console.warn("safeJSONParse:", error);
     return undefined;
   }
 }
